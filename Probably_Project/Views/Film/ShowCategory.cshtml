@@ -1,0 +1,27 @@
+﻿@model Probably_Project.Data.Entities.Genre
+
+<div class="watch-film text-center center">
+    @{
+        if (Model.Films != null)
+        {
+            foreach (var item in Model.Films.Select(i => i))
+            {
+                <div class="design">
+                    <a asp-controller="Film" asp-route-id="@item.Id" asp-action="Watch" class="text-lg-start">@item.Title</a>
+                    <div class="d-flex flex-row">
+                        <img class="filmImg" src="@Url.Content($"/File/images/{item.Img}")" />
+                        <div class="d-flex flex-column text-lg-start gap-1 m-1">
+                        <label>Release year: @item.GraduationYear</label>
+                            <label>Country: @item.Country.Name</label>
+                            <label>Genre: @item.Genre.Name</label>
+                        </div>
+                    </div>
+                    <div id="desc">
+                        <label>@item.Description</label>
+                        <label>Duration: @item.Duration min</label>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>

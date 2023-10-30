@@ -1,0 +1,263 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: whitesmoke;
+}
+
+.btn {
+    vertical-align: bottom;
+}
+
+#not-found {
+    color: white;
+    background-color: #abb2b2;
+    padding: 10px;
+    border-radius: 15px;
+    width: 50%;
+}
+
+.center {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: relative;
+    margin: auto;
+}
+
+header > nav {
+    background-color: #abb2b2;
+    padding: 10px;
+    border-radius: 15px;
+    width: 75%;
+    color: white;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+nav>label {
+    cursor: pointer;
+}
+
+input:focus {
+    outline: 4px solid lightgray;
+}
+
+header {
+    margin: 16px;
+}
+
+#categories {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: fit-content;
+    padding: 10px;
+    background-color: #abb2b2;
+    border-radius: 15px;
+}
+
+#movie {
+    height: fit-content;
+    padding: 20px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: #abb2b2;
+    border-radius: 15px;
+}
+
+#movie a:hover {
+    text-decoration: underline
+}
+
+#huy {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filmImg {
+    width: 35%;
+    height: 10%;
+}
+
+.viewsImg {
+    width: 2.5%;
+    height: 2.5%;
+}
+
+#main {
+    display: flex;
+    width: 75%;
+    color: white;
+    background-color: whitesmoke;
+    padding: 10px;
+    gap: 10px;
+    justify-content: space-between
+}
+
+a {
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.design a {
+    color: #abb2b2;
+}
+
+.design a:hover {
+    background-color: #abb2b2;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+td>a {
+    font-size: 16px;
+}
+
+a:hover {
+    color: white;
+}
+
+.lines {
+    border-bottom: 5px solid white;
+    border-radius: 10px;
+}
+
+.watch-film {
+    width: 50%;
+    color: white;
+    background-color: #abb2b2;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#desc {
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+}
+
+td {
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: lightgray;
+    border-radius: 15px
+}
+
+header a {
+    margin-right: 10px;
+}
+
+#video {
+    padding: 10px;
+    width: 50%;
+    height: fit-content;
+}
+
+.design {
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 15px;
+    color: #abb2b2;
+    margin: 5px;
+}
+
+.line-bot-top {
+    border-bottom: 3px solid white;
+    border-radius: 5px;
+}
+
+.log-sig{
+    display: flex;
+    background-color: #abb2b2;
+    border-radius: 15px;
+    flex-direction: column;
+    color: white;
+    width: 25%;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.log-sig div {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.log-sig a:hover {
+    color: #abb2b2;
+    background-color: white;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+#logout {
+    margin-right: 10px;
+}
+
+.log-sig button {
+    margin-bottom: 10px;
+}
+
+.icon-movie-sign {
+    width: 50%;
+    height: 50%;
+    overflow: visible;
+    margin-top: -20px;
+    border-radius: 100px;
+    border: solid #abb2b2;
+    background-color: #abb2b2;
+    user-select: none;
+}
+
+#icon-movie-log {
+    width: 50%;
+    height: 50%;
+    overflow: visible;
+    margin-top: -20px;
+    user-select: none;
+}
+
+textarea {
+    border-radius: 5px;
+    padding: 10px;
+    resize: none;
+    border: none;
+}
+
+textarea:focus {
+    outline: 4px solid lightgray;
+}

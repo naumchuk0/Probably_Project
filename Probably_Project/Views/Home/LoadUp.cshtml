@@ -1,0 +1,43 @@
+﻿@model Probably_Project.Models.CreateFilmModel;
+
+<div class="log-sig center d-flex g-1 text-center">
+    <form enctype="multipart/form-data" asp-controller="Home" asp-action="LoadUp" method="post">
+        <div>
+            <label asp-for="Title" class="form-label">Title:</label>
+            <input asp-for="Title" class="form-control"/>
+        </div>
+        <div>
+            <label asp-for="Description" class="form-label">Description:</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <div>
+            <label asp-for="Duration" class="form-label">Duration:</label>
+            <input asp-for="Duration" class="form-control"  />
+        </div>
+        <div>
+            <label asp-for="Release" class="form-label">Release:</label>
+            <input asp-for="Release" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="GenreId" class="form-label">Genre:</label>
+            <select asp-for="GenreId" asp-items="@ViewBag.Genres" class="form-select">
+                <option disabled selected>Choose genre...</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="CountryId" class="form-label">Country:</label>
+            <select asp-for="CountryId" asp-items="@ViewBag.Countries" class="form-select">
+                <option disabled selected>Choose country...</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="VideoMod" class="form-label">Video</label>
+            <input asp-for="VideoMod" class="form-control" type="file" accept="video/*" />
+        </div>
+        <div>
+            <label asp-for="Image" class="form-label">Img</label>
+            <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-outline-light">Load</button>
+    </form>
+</div>

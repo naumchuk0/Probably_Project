@@ -1,0 +1,55 @@
+﻿@using AccessData.Data.Entities;
+@using Microsoft.AspNetCore.Identity;
+@model Probably_Project.Data.Entities.Film;
+@inject UserManager<User> UserManager;
+
+<div class="watch-film text-center center">
+    <div class="design">
+        <h3>@Model.Title</h3>
+        <div class="d-flex flex-row">
+            <img class="filmImg" src="@Url.Content($"/File/images/{Model.Img}")" />
+            <div class="d-flex flex-column text-lg-start gap-1 m-1">
+                <label>Release year: @Model.GraduationYear</label>
+                <label>Country: @Model.Country.Name</label>
+                <label>Genre: @Model.Genre.Name</label>
+            </div>
+        </div>
+        <div id="desc">
+            <label>@Model.Description</label>
+            <label>Duration: @Model.Duration min</label>
+        </div>
+
+        <video src="@Url.Content($"/File/movies/{Model.Video}")" id="video" controls />
+    </div>
+    @{
+        if (User.IsInRole("User") || User.IsInRole("Admin"))
+        {
+            <div class="d-flex flex-column">
+               <h3 class ="user-select-none lines text-center">Comments</h3>
+                <form method="post" asp-action="AddComment" asp-route-comment="comment" asp-route-id="@Model.Id" asp-route-username="@UserManager.GetUserName(User)">
+                    <div>
+                        <input name="comment" id="comment" type="text" placeholder="Enter your comment" class="p-1">
+                        <button type="submit" class="btn btn-outline-light p-1">Send</button>
+                    </div>
+               </form>
+            </div>
+            if (Model.Comments != null)
+            {
+                foreach (var item in Model.Comments.Select(i => i))
+                {
+                    <div class="d-flex flex-column">
+                        <div class="design">
+                            <div class="d-flex gap-2">
+                                <label>@item.UserName</label>
+                                <label>@item.Date.ToShortTimeString()</label>
+                            </div>
+                            <div class="d-flex">
+                                <label class="">@item.Text</label>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+</div>

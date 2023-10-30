@@ -1,0 +1,56 @@
+﻿@using Probably_Project.Data.Entities;
+@using static System.Collections.Specialized.BitVector32;
+@model dynamic;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div id="main" class="text-center center">
+    <div id="categories">
+        <table>
+            <tr>
+                <th class="user-select-none">Categories</th>
+                <th></th>
+            </tr>
+            @{
+                foreach (var i in Model.Genre)
+                {
+                    <tr>
+                        <td><a asp-controller="Film" asp-route-id="@i.Id" asp-action="ShowCategory">@i.Name</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div id="movie">
+        <h1 class="user-select-none lines text-center">Movies</h1>
+        <div class="d-flex flex-column">
+            @{
+                foreach (var i in Model.Film)
+                {
+                    <div class="line-bot-top">
+                        <a asp-controller="Film" asp-route-id="@i.Id" asp-action="Watch" id="name" class="text-center">@i.Title</a>
+                        <div id="huy">
+                            <img class="filmImg" src="@Url.Content($"/File/images/{i.Img}")" />
+                            <div class="d-flex flex-row">
+                                <div class="d-flex flex-column text-lg-start gap-1 m-1">
+                                    <label id="grad-year">Release year: @i.GraduationYear</label>
+                                    <label id="country">Country: @i.Country.Name</label>
+                                    <label id="genre">Genre: @i.Genre.Name</label>
+                                    <label id="duration">Duration: @i.Duration min</label>
+                                    <label id="story">@i.Description</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-lg-end">
+                            <img class="viewsImg" src="~/png/resourses/eye-removebg-preview.png" />
+                            <label>@i.Views</label>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <a asp-controller="Home" asp-action="Add" onClick="window.scrollTo(0, document.body.scrollHeight);" id="load" class="btn btn-outline-light p-1 m-1">Load More</a>
+    </div>
+</div>
+

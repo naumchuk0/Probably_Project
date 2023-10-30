@@ -1,0 +1,28 @@
+﻿@page
+@model RegisterModel
+
+<div class="center log-sig gap-4">
+    <img class="icon-movie-sign" src="/png/resourses/login-.png" />
+    <div>
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="mb-3">
+                <input asp-for="Input.UserName" autocomplete="username" aria-required="true" placeholder="Enter login" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Input.Password" autocomplete="new-password" aria-required="true" placeholder="Enter password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true" placeholder="Confirm password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="btn btn-outline-light">Register</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
