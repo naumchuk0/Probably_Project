@@ -5,7 +5,7 @@
 namespace AccessData.Migrations
 {
     /// <inheritdoc />
-    public partial class addU : Migration
+    public partial class addIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

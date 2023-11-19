@@ -12,47 +12,20 @@ using Probably_Project.Data;
 namespace AccessData.Migrations
 {
     [DbContext(typeof(MovieDB))]
-    [Migration("20231013125525_addUser")]
-    partial class addUser
+    [Migration("20231105152545_addDb")]
+    partial class addDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("AccessData.Data.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,30 +33,37 @@ namespace AccessData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("RoleId")
+                    b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("FilmId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+            modelBuilder.Entity("AccessData.Data.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -142,6 +122,58 @@ namespace AccessData.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -170,10 +202,12 @@ namespace AccessData.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -210,10 +244,12 @@ namespace AccessData.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -339,177 +375,6 @@ namespace AccessData.Migrations
                     b.HasIndex("GenreId");
 
                     b.ToTable("Films");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CountryId = 2,
-                            Description = "test1",
-                            Duration = 15,
-                            GenreId = 2,
-                            GraduationYear = 2023,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test1",
-                            Video = "video (2160p).mp4",
-                            Views = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CountryId = 7,
-                            Description = "test2",
-                            Duration = 15,
-                            GenreId = 6,
-                            GraduationYear = 1999,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test2",
-                            Video = "video (2160p).mp4",
-                            Views = 123123
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CountryId = 1,
-                            Description = "test3",
-                            Duration = 15,
-                            GenreId = 1,
-                            GraduationYear = 2077,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test3",
-                            Video = "video (2160p).mp4",
-                            Views = 4127
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CountryId = 5,
-                            Description = "test4",
-                            Duration = 15,
-                            GenreId = 3,
-                            GraduationYear = 2013,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test4",
-                            Video = "video (2160p).mp4",
-                            Views = 19
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CountryId = 2,
-                            Description = "test5",
-                            Duration = 15,
-                            GenreId = 2,
-                            GraduationYear = 2023,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test5",
-                            Video = "video (2160p).mp4",
-                            Views = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CountryId = 7,
-                            Description = "test6",
-                            Duration = 15,
-                            GenreId = 6,
-                            GraduationYear = 1999,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test6",
-                            Video = "video-1658576887.mp4",
-                            Views = 123123
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CountryId = 1,
-                            Description = "test7",
-                            Duration = 15,
-                            GenreId = 1,
-                            GraduationYear = 2077,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test7",
-                            Video = "video-1658576887.mp4",
-                            Views = 4127
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CountryId = 5,
-                            Description = "test8",
-                            Duration = 15,
-                            GenreId = 3,
-                            GraduationYear = 2013,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test8",
-                            Video = "video-1658576887.mp4",
-                            Views = 19
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CountryId = 2,
-                            Description = "test9",
-                            Duration = 15,
-                            GenreId = 2,
-                            GraduationYear = 2023,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test9",
-                            Video = "video (2160p).mp4",
-                            Views = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CountryId = 7,
-                            Description = "test10",
-                            Duration = 15,
-                            GenreId = 6,
-                            GraduationYear = 1999,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test10",
-                            Video = "video (2160p).mp4",
-                            Views = 123123
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CountryId = 1,
-                            Description = "test11",
-                            Duration = 15,
-                            GenreId = 1,
-                            GraduationYear = 2077,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test11",
-                            Video = "video (2160p).mp4",
-                            Views = 4127
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CountryId = 5,
-                            Description = "test12",
-                            Duration = 15,
-                            GenreId = 3,
-                            GraduationYear = 2013,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test12",
-                            Video = "video (2160p).mp4",
-                            Views = 19
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CountryId = 8,
-                            Description = "test13",
-                            Duration = 3,
-                            GenreId = 8,
-                            GraduationYear = 2122,
-                            Img = "https://cpmr-islands.org/wp-content/uploads/sites/4/2019/07/test.png",
-                            Title = "Test13",
-                            Video = "video-1658576887.mp4",
-                            Views = 123
-                        });
                 });
 
             modelBuilder.Entity("Probably_Project.Data.Entities.Genre", b =>
@@ -591,6 +456,17 @@ namespace AccessData.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AccessData.Data.Entities.Comment", b =>
+                {
+                    b.HasOne("Probably_Project.Data.Entities.Film", "Film")
+                        .WithMany("Comments")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Film");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -602,7 +478,7 @@ namespace AccessData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("AccessData.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -611,7 +487,7 @@ namespace AccessData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("AccessData.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -626,7 +502,7 @@ namespace AccessData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("AccessData.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -635,7 +511,7 @@ namespace AccessData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("AccessData.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -664,6 +540,11 @@ namespace AccessData.Migrations
             modelBuilder.Entity("Probably_Project.Data.Entities.Country", b =>
                 {
                     b.Navigation("Films");
+                });
+
+            modelBuilder.Entity("Probably_Project.Data.Entities.Film", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Probably_Project.Data.Entities.Genre", b =>

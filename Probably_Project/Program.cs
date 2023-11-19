@@ -7,11 +7,13 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connStr = builder.Configuration.GetConnectionString("DESKTOP-1L37OVF\\SQLEXPRESS");
+string connStr = builder.Configuration.GetConnectionString("MovieDBAzure");
 
 builder.Services.AddControllersWithViews(); 
 
 builder.Services.AddDbContext<MovieDB>(opts => opts.UseSqlServer(connStr));
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MovieDB>();
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
