@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\File\images\wallhaven-2elvp6_1920x1080.png" />
+    <None Include="wwwroot\File\images\wallhaven-45ovk7_1920x1080.png" />
+    <None Include="wwwroot\File\images\wallhaven-9mz1od_1920x1080.png" />
+    <None Include="wwwroot\File\images\wallhaven-mdjv69_1920x1080.png" />
+    <None Include="wwwroot\File\images\wallhaven-mpjj91_1920x1080.png" />
+    <None Include="wwwroot\File\images\wallhaven-p8my3j_1920x1080.png" />
+    <None Include="wwwroot\File\images\wallhaven-ymz3xg_1920x1080.png" />
+    <None Include="wwwroot\File\movies\production_id_4121129 %282160p%29.mp4" />
+    <None Include="wwwroot\File\movies\video %282160p%29.mp4" />
+    <None Include="wwwroot\File\movies\video-1658576887.mp4" />
     <None Include="wwwroot\png\resourses\eye-removebg-preview.png" />
   </ItemGroup>
 
@@ -34,10 +44,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AccessData\AccessData.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="File\images\" />
   </ItemGroup>
 
 </Project>

@@ -54,12 +54,12 @@ using (IServiceScope scope = app.Services.CreateScope())
     app.UseHsts();
 //}
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.ContentRootPath, "File")),
-    RequestPath = "/File"
-});
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//           Path.Combine(builder.Environment.ContentRootPath, "File")),
+//    RequestPath = "/File"
+//});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

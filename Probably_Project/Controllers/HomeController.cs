@@ -79,7 +79,7 @@ namespace Probably_Project.Controllers
 
             if (film.Image != null && film.Image.Length > 0)
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "File/images/", film.Image.FileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/File/images/", film.Image.FileName);
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     film.Image.CopyTo(stream);
@@ -89,7 +89,7 @@ namespace Probably_Project.Controllers
             
             if (film.VideoMod != null && film.VideoMod.Length > 0)
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "File/movies/", film.VideoMod.FileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/File/movies/", film.VideoMod.FileName);
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     film.VideoMod.CopyTo(stream);
