@@ -14,7 +14,7 @@ namespace Probably_Project.Data
         {
             base.OnConfiguring(optionsBuilder);
             //comment
-            optionsBuilder.UseSqlServer("Server=tcp:moviesqlserver.database.windows.net,1433;Initial Catalog=NewMovieDb;Persist Security Info=False;User ID=Admin17;Password=Hasn1312;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseSqlServer("Server=tcp:vladtestserver.database.windows.net,1433;Initial Catalog=testdb;Persist Security Info=False;User ID=admin1;Password=Qwer1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
