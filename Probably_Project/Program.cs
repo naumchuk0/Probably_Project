@@ -48,11 +48,11 @@ using (IServiceScope scope = app.Services.CreateScope())
     SeedExtensions.SeedAdmin(serviceProvider).Wait();
 }
 
-if (!app.Environment.IsDevelopment())
-{
+//if (!app.Environment.IsDevelopment())
+//{
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
-}
+//}
 
 app.UseStaticFiles(new StaticFileOptions
 {
