@@ -13,7 +13,7 @@ namespace Probably_Project.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
+            //comment
             optionsBuilder.UseSqlServer("Server=tcp:mysqlserve.database.windows.net,1433;Initial Catalog=MovieDB;Persist Security Info=False;User ID=Admin13@@mysqlserve;Password=Hasn1312@?;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
